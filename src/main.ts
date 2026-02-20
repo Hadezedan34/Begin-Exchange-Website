@@ -1,24 +1,6 @@
 // API URL for live exchange rates (free, no API key required)
 const EXCHANGE_API_URL = 'https://api.exchangerate-api.com/v4/latest/USD';
 
-// Exchange rate mapping from API currency codes to our codes
-const currencyMapping: { [key: string]: string } = {
-    "USD": "USD",
-    "EUR": "EUR",
-    "SYP": "SYP",
-    "EGP": "EGY",
-    "CNY": "YIN"
-};
-
-// Currency names for display
-const currencyNames: { [key: string]: string } = {
-    "USD": "US Dollar",
-    "EUR": "Euro",
-    "SYP": "Syrian Pound",
-    "EGP": "Egyptian Pound",
-    "CNY": "Chinese Yuan"
-};
-
 // Default rates (fallback)
 const rates: { [key: string]: number } = {
     "USD": 1,
@@ -32,7 +14,7 @@ const rates: { [key: string]: number } = {
 const amountinput = document.getElementById('amount-input2') as HTMLInputElement;
 const fromcurrency = document.getElementById('countrylist1') as HTMLSelectElement;
 const tocurrency = document.getElementById('countrylist2') as HTMLSelectElement;
-const convertbrn = document.getElementById('button-convert') as HTMLButtonElement;
+const convertbtn = document.getElementById('button-convert') as HTMLButtonElement;
 const resaultdiv = document.getElementById('convert-div') as HTMLDivElement;
 
 // Quick converter elements
@@ -150,7 +132,7 @@ function convertCurrency(amount: number, from: string, to: string): number {
 }
 
 // Main convert button handler
-convertbrn.addEventListener('click', () => {
+convertbtn.addEventListener('click', () => {
     const amount = Number(amountinput.value);
     const from = fromcurrency.value;
     const to = tocurrency.value;
