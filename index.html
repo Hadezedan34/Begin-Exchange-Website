@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Begin Exchange</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navbar - Simple Style -->
+  <nav class="navbar">
+    <div class="logo">Begin Exchange</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#rates-section">Rates</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="main-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <!-- Quick Converter Widget -->
+      <div class="sidebar-widget quick-converter">
+        <h3>Quick Convert</h3>
+        <div class="quick-input-group">
+          <input type="number" id="quick-amount" placeholder="Amount" class="quick-input">
+          <select id="quick-from" class="quick-select">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="SYP">SYP</option>
+            <option value="EGY">EGP</option>
+            <option value="YIN">CNY</option>
+          </select>
+        </div>
+        <div class="convert-arrow">&#8595;</div>
+        <div class="quick-input-group">
+          <input type="text" id="quick-result" placeholder="Result" class="quick-input" readonly>
+          <select id="quick-to" class="quick-select">
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+            <option value="SYP">SYP</option>
+            <option value="EGY">EGP</option>
+            <option value="YIN">CNY</option>
+          </select>
+        </div>
+        <button id="quick-convert-btn" class="quick-convert-btn">Convert</button>
+      </div>
+
+      <!-- Popular Pairs -->
+      <div class="sidebar-widget popular-pairs">
+        <h3>Popular Pairs</h3>
+        <div class="pair-item">
+          <span class="pair-currencies">USD/EUR</span>
+          <span class="pair-rate" id="pair-usd-eur">0.92</span>
+        </div>
+        <div class="pair-item">
+          <span class="pair-currencies">USD/GBP</span>
+          <span class="pair-rate" id="pair-usd-gbp">0.79</span>
+        </div>
+        <div class="pair-item">
+          <span class="pair-currencies">EUR/JPY</span>
+          <span class="pair-rate" id="pair-eur-jpy">162.50</span>
+        </div>
+        <div class="pair-item">
+          <span class="pair-currencies">USD/CNY</span>
+          <span class="pair-rate" id="pair-usd-cny">7.24</span>
+        </div>
+      </div>
+
+      <!-- Market Info -->
+      <div class="sidebar-widget market-info">
+        <h3>Market Info</h3>
+        <div class="market-item">
+          <span class="market-label">Status</span>
+          <span class="market-value open">Open</span>
+        </div>
+        <div class="market-item">
+          <span class="market-label">Last Update</span>
+          <span class="market-value" id="market-update-time">--:--</span>
+        </div>
+        <div class="market-item">
+          <span class="market-label">Base</span>
+          <span class="market-value">USD</span>
+        </div>
+      </div>
+
+      <!-- Tips -->
+      <div class="sidebar-widget tips">
+        <h3>Tips</h3>
+        <ul class="tips-list">
+          <li>Real-time exchange rates</li>
+          <li>Best rates during market hours</li>
+          <li>Compare before converting</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <div class="hero-section">
+        <h1>Welcome to Begin Exchange</h1>
+        <p>موقع تصريف العملات الأول - Your trusted currency exchange platform</p>
+      </div>
+
+      <!-- Converter Section -->
+      <div class="converter-section">
+        <h2 class="section-title">Currency Converter</h2>
+        <div class="converter-card">
+          <div class="converter-form">
+            <div class="form-group">
+              <label>From</label>
+              <select name="" id="countrylist1" class="rolldown">
+                <option value="USD">US Dollar</option> 
+                <option value="EUR">Euro</option>
+                <option value="SYP">Syrian Pound</option>
+                <option value="EGY">Egyptian Pound</option>
+                <option value="YIN">Chinese Yuan</option>
+              </select>
+            </div>
+            
+            <button class="swap-btn" id="swap-currencies"><i class="fas fa-exchange-alt"></i></button>
+            
+            <div class="form-group">
+              <label>To</label>
+              <select name="" id="countrylist2" class="rolldown">
+                <option value="EUR">Euro</option>
+                <option value="USD">US Dollar</option> 
+                <option value="SYP">Syrian Pound</option>
+                <option value="EGY">Egyptian Pound</option>
+                <option value="YIN">Chinese Yuan</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="amount-input-group">
+            <input type="number" class="input" id="amount-input2" placeholder="Enter Amount">
+          </div>
+
+          <button class="button-ex" id="button-convert">Convert Now</button>
+          
+          <div id="convert-div" class="result-display">
+            <span class="result-placeholder">Enter an amount to convert</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Exchange Rates Section -->
+      <div class="rates-section" id="rates-section">
+        <div class="rates-header">
+          <h2 class="section-title">Live Exchange Rates</h2>
+          <button class="refresh-btn" id="refresh-rates">Refresh</button>
+        </div>
+        
+        <div class="rates-table-container">
+          <table class="rates-table">
+            <thead>
+              <tr>
+                <th>Currency</th>
+                <th>Name</th>
+                <th>Rate (USD)</th>
+              </tr>
+            </thead>
+            <tbody id="rates-table-body">
+              <tr><td colspan="3" class="loading-cell">Loading live rates...</td></tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <p class="last-updated" id="last-updated"></p>
+      </div>
+
+      <!-- Features Section -->
+      <div class="features-section">
+        <div class="feature-card">
+          <h3>Real-time Rates</h3>
+          <p>Get live exchange rates updated instantly</p>
+        </div>
+        <div class="feature-card">
+          <h3>Secure</h3>
+          <p>Your transactions are safe and secure</p>
+        </div>
+        <div class="feature-card">
+          <h3>Global Coverage</h3>
+          <p>Support for major world currencies</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 Begin Exchange. All rights reserved.</p>
+  </footer>
+</body>
+<link rel="stylesheet" href="src/style.css">
+<script type="module" src="/src/main.ts"></script>
+</html>
